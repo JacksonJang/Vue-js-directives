@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">	   
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js 라이프 사이클</title>
+</head>
+<body>
+    <div id="app">
+        <p v-text="msg"></p>
+        <p>{{ msg }}</p>
+        <div v-html="html"></div>
+        <div v-show="false">이건 안보일걸?</div>
+        <div v-if="true">이건 보일거야</div>
+        <div v-else>이건 안보여</div>
+        <div v-if="type === 'A'">타입은 A 입니다.</div>
+        <div v-if="type === 'B'">타입은 B 입니다.</div>
+        <div v-for="item in items">
+            {{ item.text }}
+        </div>
+        <div v-for="(item, index) in items">
+            {{ index }} {{ item }}
+        </div>
+        <div v-for="(value, key) in object">
+            {{ key }} {{ value }}
+        </div>
+        <div v-for="(value, name, index) in object">
+            {{ index }} {{ name }} {{ value }} 
+        </div>
+        <button v-on:click="doThis">doThis 버튼</button>
+        <br />
+        <a v-bind:href="url" target="_blank">링크</a>
+        <br />
+        <input type="text" v-model="inputTest"/>
+        <br />
+        {{inputTest}}
+        <div v-pre>{{ 이곳은 컴파일되지 않습니다. }}</div>
+        <div v-once>절대 바뀌지 않음: {{ inputTest }}</div>
+        <div v-cloak>
+            {{ msg }}
+        </div>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    msg: 'Hello World!',
+                    html: "<input type='text' value='text'>",
+                    isShow: false,
+                    type: "A",
+                    items: [
+                        { text : "test1" },
+                        { text : "test2" }
+                    ],
+                    object : {
+                        "key1": "value1",
+                        "key2": "value2",
+                    },
+                    url: 'https://jacksonjang.github.io/',
+                    inputTest : '여기에 입력하면 아래 텍스트가 바껴요',
+                };
+            },
+            methods: {
+                doThis() {
+                    alert('doThis');
+                }
+            },
+        })
+    </script>   
+</body>
+</html>
